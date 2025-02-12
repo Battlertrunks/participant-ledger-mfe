@@ -1,45 +1,73 @@
 <section class="ledger-summary-page">
-  <p>
-    Transactions for all profiles are listed below. Click on a profile name or
-    description to see additional details for that transaction. Using the
-    <strong><i class="fas fa-filter"></i> Filter</strong> option, you may adjust
-    the ledger for a specific date range or transaction type.
-  </p>
+  <div class="ledger-summary-header">
+    <div>
+      <span>Participant Ledger</span>
+      <h2>$ 400.00</h2>
+    </div>
+    <div>
+      This is a link
+    </div>
+  </div>
+
   <div class="ledger-summary-body">
     <div>
       <canvas id="MyChart" class="pie-chart-graph">{{ chart }}</canvas>
     </div>
     <div class="amount-types-container">
-      <div class="">
+      <div class="individual-amounts-container">
         <div class="square-title-container">
           <span class="square-rep debits-color"></span>
           <h3>
             Debits
           </h3>
         </div>
-        <p>{{ 100 | currency }}</p>
+        <div class="amount-percentage-container">
+          <p>{{ 100 | currency }}</p>
+          <div class="container">
+            <div class="skill html" style="width: 80%"></div>
+          </div>
+        </div>
       </div>
-      <div class="">
+      <div class="line-breaker"></div>
+      <div class="individual-amounts-container">
         <div class="square-title-container">
           <span class="square-rep credits-color"></span>
           <h3>
             Credits
           </h3>
         </div>
-        <p>{{ 200 | currency }}</p>
+        <div class="amount-percentage-container">
+          <p>{{ 200 | currency }}</p>
+          <div class="container">
+            <div class="skill html" style="width: 80%"></div>
+          </div>
+        </div>
       </div>
-      <div class="">
+      <div class="line-breaker"></div>
+      <div class="individual-amounts-container">
         <div class="square-title-container">
           <span class="square-rep balance-color"></span>
           <h3>
             Balance
           </h3>
         </div>
-        <p>{{ 300 | currency }}</p>
+        <div class="amount-percentage-container">
+          <p>{{ 300 | currency }}</p>
+          <div class="container">
+            <div class="skill html" style="width: 80%"></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- <p>
+  Transactions for all profiles are listed below. Click on a profile name or
+  description to see additional details for that transaction. Using the
+  <strong><i class="fas fa-filter"></i> Filter</strong> option, you may adjust
+  the ledger for a specific date range or transaction type.
+</p> -->
 
 <!-- <section class="totals-cards no-print">
   <div class="balance-card total debits">

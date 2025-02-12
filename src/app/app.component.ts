@@ -28,31 +28,26 @@ export class AppComponent {
           label: 'Account Balance',
           data: [100, 200, 300],
           backgroundColor: [
-            'rgba(255, 99, 132, 0.5)',
-            'rgba(54, 162, 235, 0.5)',
-            'rgba(255, 206, 86, 0.5)'
+            'rgba(132, 255, 0, 0.75)',
+            'rgba(128, 182, 70, 0.75)',
+            'rgba(37, 138, 0, 0.75)'
           ],
           hoverOffset: 4,
+
         }]
       },
       options: {
-        cutout: '85%',
+        cutout: '65%',
         maintainAspectRatio: false,
         plugins: {
-          title: {
-            display: true,
-            text: 'Account Balance',
-            font: {
-              size: 20
-            },
-            padding: {
-              top: 10,
-              bottom: 10
-            },
-          },
+          legend: {
+            display: false
+          }
         }
       }
     });
   }
+
+
 
 }
