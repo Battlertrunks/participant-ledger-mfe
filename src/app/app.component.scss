@@ -1,0 +1,53 @@
+.ledger-summary-page {
+  padding: 2rem;
+  box-shadow: 0rem 1rem 15px rgba(0, 0, 0, 0.2);
+  border: .112rem solid #dadada;
+  border-radius: .755em;
+}
+
+p {
+  margin: 0;
+}
+
+.pie-chart-graph {
+  width: 20rem;
+}
+
+.ledger-summary-body {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.amount-types-container {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1rem;
+  padding: 0 0 0 5em;
+  flex-direction: column;
+}
+
+.square-title-container {
+  display: flex;
+  align-items: center;
+}
+
+.square-rep {
+  width: 1rem;
+  height: 1rem;
+  margin-right: .552em;
+  border-radius: .225em;
+}
+
+.debits-color {
+  background-color: #FF0000;
+}
+
+.credits-color {
+  background-color: #00FF00;
+}
+
+.balance-color {
+  background-color: #0000FF;
+}
