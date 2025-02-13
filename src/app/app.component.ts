@@ -1,12 +1,12 @@
-import { CurrencyPipe } from '@angular/common';
+import { CurrencyPipe, CommonModule } from '@angular/common';
 import { Component, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Chart } from 'chart.js/auto';
-
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CurrencyPipe],
+  imports: [RouterOutlet, CurrencyPipe, CommonModule, FormsModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -16,6 +16,8 @@ export class AppComponent {
   ngOnInit() {
     this.createChart();
   }
+
+  listItemsSelected: boolean = false;
 
   chart: any;
 

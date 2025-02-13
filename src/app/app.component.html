@@ -1,11 +1,22 @@
 <section class="ledger-summary-page">
   <div class="ledger-summary-header">
     <div>
-      <span>Participant Ledger</span>
+      <span class="page-name-text">Participant Ledger</span>
       <h2>$ 400.00</h2>
     </div>
-    <div>
-      This is a link
+    <div class="switch-container">
+      <p
+        class="switch-text"
+        [ngClass]="{ 'selected-switch-text': !listItemsSelected }"
+      >Line Items</p>
+      <label class="switch">
+        <input type="checkbox" [(ngModel)]="listItemsSelected">
+        <span class="slider round"></span>
+      </label>
+      <p
+        class="switch-text"
+        [ngClass]="{ 'selected-switch-text': listItemsSelected }"
+      >Balances</p>
     </div>
   </div>
 
@@ -23,8 +34,11 @@
         </div>
         <div class="amount-percentage-container">
           <p>{{ 100 | currency }}</p>
-          <div class="container">
-            <div class="skill html" style="width: 80%"></div>
+          <div class="percentage-container">
+            <div class="container">
+              <div class="skill html debits-color" style="width: 80%"></div>
+            </div>
+            <p class="percent-text">80%</p>
           </div>
         </div>
       </div>
@@ -38,8 +52,11 @@
         </div>
         <div class="amount-percentage-container">
           <p>{{ 200 | currency }}</p>
-          <div class="container">
-            <div class="skill html" style="width: 80%"></div>
+          <div class="percentage-container">
+            <div class="container">
+              <div class="skill html credits-color" style="width: 80%"></div>
+            </div>
+            <p class="percent-text">80%</p>
           </div>
         </div>
       </div>
@@ -53,48 +70,14 @@
         </div>
         <div class="amount-percentage-container">
           <p>{{ 300 | currency }}</p>
-          <div class="container">
-            <div class="skill html" style="width: 80%"></div>
+          <div class="percentage-container">
+            <div class="container">
+              <div class="skill html balance-color" style="width: 80%"></div>
+            </div>
+            <p class="percent-text">80%</p>
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- <p>
-  Transactions for all profiles are listed below. Click on a profile name or
-  description to see additional details for that transaction. Using the
-  <strong><i class="fas fa-filter"></i> Filter</strong> option, you may adjust
-  the ledger for a specific date range or transaction type.
-</p> -->
-
-<!-- <section class="totals-cards no-print">
-  <div class="balance-card total debits">
-    <h4>
-      Debits
-      <tooltip>
-        Includes any refunds, credit card chargebacks, ACH returns, and payouts.
-      </tooltip>
-    </h4>
-    <h2>{{ crebitTotals.debits | currency }}</h2>
-  </div>
-  <div class="balance-card total credits">
-    <h4>
-      Credits
-      <tooltip position="center">
-        Includes all payments made to the organization.
-      </tooltip>
-    </h4>
-    <h2>{{ crebitTotals.credits | currency }}</h2>
-  </div>
-  <div class="balance-card total credits">
-    <h4>
-      Balance
-      <tooltip position="shift-left">
-        The difference between all credits and debits.
-      </tooltip>
-    </h4>
-    <h2>{{ crebitTotals.balance | currency }}</h2>
-  </div>
-</section> -->
