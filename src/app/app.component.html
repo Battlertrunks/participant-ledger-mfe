@@ -1,83 +1,87 @@
-<section class="ledger-summary-page">
-  <div class="ledger-summary-header">
-    <div>
-      <span class="page-name-text">Participant Ledger</span>
-      <h2>$ 400.00</h2>
+<div>
+  <section class="ledger-summary-page">
+    <div class="ledger-summary-header">
+      <div>
+        <span class="page-name-text">Participant Ledger</span>
+        <h2>{{ totalSum | currency }}</h2>
+      </div>
+      <div class="switch-container">
+        <p
+          class="switch-text"
+          [ngClass]="{ 'selected-switch-text': !listItemsSelected }"
+        >Line Items</p>
+        <label class="switch">
+          <input class="input-checkbox" type="checkbox" [(ngModel)]="listItemsSelected">
+          <span class="slider round"></span>
+        </label>
+        <p
+          class="switch-text"
+          [ngClass]="{ 'selected-switch-text': listItemsSelected }"
+        >Balances</p>
+      </div>
     </div>
-    <div class="switch-container">
-      <p
-        class="switch-text"
-        [ngClass]="{ 'selected-switch-text': !listItemsSelected }"
-      >Line Items</p>
-      <label class="switch">
-        <input type="checkbox" [(ngModel)]="listItemsSelected">
-        <span class="slider round"></span>
-      </label>
-      <p
-        class="switch-text"
-        [ngClass]="{ 'selected-switch-text': listItemsSelected }"
-      >Balances</p>
-    </div>
-  </div>
 
-  <div class="ledger-summary-body">
-    <div>
-      <canvas id="MyChart" class="pie-chart-graph">{{ chart }}</canvas>
+    <div class="ledger-summary-body">
+      <div>
+        <canvas id="MyChart" class="pie-chart-graph">{{ chart }}</canvas>
+      </div>
+      <div class="amount-types-container">
+        <div class="individual-amounts-container">
+          <div class="square-title-container">
+            <span class="square-rep debits-color"></span>
+            <h3>
+              Debits
+            </h3>
+          </div>
+          <div class="amount-percentage-container">
+            <p>{{ crebitTotals?.debits | currency }}</p>
+            <div class="percentage-container">
+              <div class="container">
+                <div class="skill html debits-color" [ngStyle]="{'width.%': debitsPercentage}"></div>
+              </div>
+              <p class="percent-text">{{ debitsPercentage }}%</p>
+            </div>
+          </div>
+        </div>
+        <div class="line-breaker"></div>
+        <div class="individual-amounts-container">
+          <div class="square-title-container">
+            <span class="square-rep credits-color"></span>
+            <h3>
+              Credits
+            </h3>
+          </div>
+          <div class="amount-percentage-container">
+            <p>{{ crebitTotals?.credits | currency }}</p>
+            <div class="percentage-container">
+              <div class="container">
+                <div class="skill html credits-color" [ngStyle]="{'width.%': creditsPercentage}"></div>
+              </div>
+              <p class="percent-text">{{ creditsPercentage }}%</p>
+            </div>
+          </div>
+        </div>
+        <div class="line-breaker"></div>
+        <div class="individual-amounts-container">
+          <div class="square-title-container">
+            <span class="square-rep balance-color"></span>
+            <h3>
+              Balance
+            </h3>
+          </div>
+          <div class="amount-percentage-container">
+            <p>{{ crebitTotals?.balance | currency }}</p>
+            <div class="percentage-container">
+              <div class="container">
+                <div class="skill html balance-color" [ngStyle]="{'width.%': balancePercentage}"></div>
+              </div>
+              <p class="percent-text">{{ balancePercentage }}%</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="amount-types-container">
-      <div class="individual-amounts-container">
-        <div class="square-title-container">
-          <span class="square-rep debits-color"></span>
-          <h3>
-            Debits
-          </h3>
-        </div>
-        <div class="amount-percentage-container">
-          <p>{{ 100 | currency }}</p>
-          <div class="percentage-container">
-            <div class="container">
-              <div class="skill html debits-color" style="width: 80%"></div>
-            </div>
-            <p class="percent-text">80%</p>
-          </div>
-        </div>
-      </div>
-      <div class="line-breaker"></div>
-      <div class="individual-amounts-container">
-        <div class="square-title-container">
-          <span class="square-rep credits-color"></span>
-          <h3>
-            Credits
-          </h3>
-        </div>
-        <div class="amount-percentage-container">
-          <p>{{ 200 | currency }}</p>
-          <div class="percentage-container">
-            <div class="container">
-              <div class="skill html credits-color" style="width: 80%"></div>
-            </div>
-            <p class="percent-text">80%</p>
-          </div>
-        </div>
-      </div>
-      <div class="line-breaker"></div>
-      <div class="individual-amounts-container">
-        <div class="square-title-container">
-          <span class="square-rep balance-color"></span>
-          <h3>
-            Balance
-          </h3>
-        </div>
-        <div class="amount-percentage-container">
-          <p>{{ 300 | currency }}</p>
-          <div class="percentage-container">
-            <div class="container">
-              <div class="skill html balance-color" style="width: 80%"></div>
-            </div>
-            <p class="percent-text">80%</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+
+  <app-line-items />
+</div>
