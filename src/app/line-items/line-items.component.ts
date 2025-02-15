@@ -2,24 +2,43 @@ import { Component } from '@angular/core';
 import { MatTableModule } from '@angular/material/table';
 import { DataService } from '../data.service';
 import { CurrencyPipe } from '@angular/common';
-
-const PAR_DATA = [
-  {date: '04/24/2024', participant: 'Szczesniak, Gavin', description: 'TUITION test', debit: '$0.00', credit: ''},
-  {date: '04/25/2024', participant: 'Szczesniak, Gavin', description: 'TUITION test', debit: '', credit: '$0.00'},
-];
+import { FormsModule } from '@angular/forms';
+import { debounceTime, Subject, switchMap } from 'rxjs';
+import { FiltersWidgetComponent } from '../filters-widget/filters-widget.component';
 
 @Component({
   selector: 'app-line-items',
   standalone: true,
-  imports: [MatTableModule, CurrencyPipe],
+  imports: [MatTableModule, CurrencyPipe, FormsModule, FiltersWidgetComponent],
   templateUrl: './line-items.component.html',
   styleUrl: './line-items.component.scss'
 })
 export class LineItemsComponent {
-  constructor(private dataService: DataService) {}
+
+  private searchTerm = new Subject<string>();
+
+  constructor(private dataService: DataService) {
+    this.searchTerm.pipe(
+      debounceTime(500),
+      switchMap(term => {
+        return this.dataService.fetchCrebits(term)
+      })
+    ).subscribe({
+      next: data => {
+          this.dataSource = data;
+        },
+        error: (error: any) => {
+          console.error('There was an error!', error);
+        }
+    });
+  }
 
   displayedColumns: string[] = ['date', 'participant', 'description', 'debit', 'credit'];
   dataSource: any;
+
+  searchLineItem: string = '';
+
+  isFiltering: boolean = false;
 
   ngOnInit() {
     this.dataService.fetchCrebits().subscribe({
@@ -33,5 +52,13 @@ export class LineItemsComponent {
         console.log(this.dataSource);
       }
     });
+  }
+
+  onSearchChange(lineItemSearch: string) {
+    this.searchTerm.next(lineItemSearch);
+  }
+
+  toggleFilters() {
+    this.isFiltering = !this.isFiltering;
   }
 }

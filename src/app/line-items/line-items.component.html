@@ -1,8 +1,18 @@
+@if (isFiltering) {
+  <app-filters-widget (closeFiltering)="toggleFilters()"/>
+}
+
 <section class="line-items-page">
   <div class="search-filter-container">
-    <input class="line-item-search-input" type="text" placeholder="Search Line Item..." />
+    <input
+      class="line-item-search-input"
+      type="text"
+      placeholder="Search Line Item..."
+      [(ngModel)]="searchLineItem"
+      (ngModelChange)="onSearchChange($event)"
+    />
     <div class="filters-misc-container">
-      <button><i class="fas fa-filter"></i> Filters</button>
+      <button (click)="toggleFilters()"><i class="fas fa-filter"></i> Filters</button>
       <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
     </div>
   </div>

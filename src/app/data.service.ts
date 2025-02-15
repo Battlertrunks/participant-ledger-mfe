@@ -13,8 +13,12 @@ export class DataService {
     return this.http.get(`/api/organizations/116302/ledger-balance/participant`);
   }
 
-  fetchCrebits(): Observable<any> {
-    return this.http.get(`/api/organizations/116302/crebitz?crebitCount=200&startDate=2014-04-01&endDate=2024-04-30&deactivatedRegistrations=true&splitAttributions=false`);
+  fetchCrebits(searchValue: string = ''): Observable<any> {
+    if (searchValue) {
+      return this.http.get(`/api/organizations/116302/crebitz?text=${searchValue}&crebitCount=200&startDate=2014-04-01&endDate=2024-04-30&deactivatedRegistrations=true&splitAttributions=false`);
+    } else {
+      return this.http.get(`/api/organizations/116302/crebitz?crebitCount=200&startDate=2014-04-01&endDate=2024-04-30&deactivatedRegistrations=true&splitAttributions=false`);
+    }
   }
 
 }
