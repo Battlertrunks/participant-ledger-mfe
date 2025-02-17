@@ -1,27 +1,52 @@
 <div class="backdrop" (click)="onClose()">
 </div>
-<dialog open>
+<dialog class="form-dialog" open>
   <h2>Add Task</h2>
   <form>
-    <p>
-      <label for="title">Title</label>
+    <div>
+      <label for="title">Date</label>
       <!-- [(ngModel)] the square and paren sets up two-way binding -->
-      <input type="text" id="title" name="title" />
+      <div>
+        <input class="basic-input" type="date" id="date-start" name="title" />
+        <input class="basic-input" type="date" id="date-end" name="title" />
+      </div>
+    </div>
+
+    <div class="select-container">
+      <label>Title</label>
+      <mat-form-field>
+        <mat-label>Select Title</mat-label>
+        <mat-select [(value)]="selectedFood">
+          @for (food of foods; track food) {
+            <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <p>
+      <label for="form-reg">Form Registration</label>
+      <input class="basic-input" type="select" id="form-reg" name="form-reg"/>
     </p>
 
     <p>
-      <label for="summary">Summary</label>
-      <textarea id="summary" rows="5" name="summary"></textarea>
+      <label for="profile-reg">Profile Registered to</label>
+      <input class="basic-input" type="select" id="profile-reg" name="profile-reg"/>
     </p>
 
     <p>
-      <label for="due-date">Due Date</label>
-      <input type="date" id="due-date" name="due-date"/>
+      <label for="deactivated-reg">Deactivated Registration</label>
+      <input class="basic-input" type="select" id="deactivated-reg" name="deactivated-reg"/>
     </p>
 
-    <p class="actions">
-      <button type="button" (click)="onClose()">Cancel</button>
-      <button type="submit">Create</button>
+    <p>
+      <label for="split-line-items">Split Line Items</label>
+      <input class="basic-input" type="select" id="split-line-items" name="split-line-items"/>
+    </p>
+
+    <p class="cancel-submit-container">
+      <button class="cancel-btn" type="button" (click)="onClose()">Cancel</button>
+      <button class="add-btn" type="submit">Add Filters</button>
     </p>
   </form>
 </dialog>

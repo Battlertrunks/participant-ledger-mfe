@@ -13,6 +13,7 @@ import { EmptyRouteComponent } from './app/empty-route/empty-route.component';
 import { APP_BASE_HREF } from '@angular/common';
 import { Subject } from 'rxjs';
 import { provideHttpClient } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 // if (environment.production) {
 //   enableProdMode();
@@ -26,7 +27,8 @@ const lifecycles = singleSpaAngular({
       providers: [
         getSingleSpaExtraProviders(),
         { provide: APP_BASE_HREF, useValue: `${window.location.pathname}` },
-        provideHttpClient()
+        provideHttpClient(),
+        provideAnimations()
       ],
     });
   },

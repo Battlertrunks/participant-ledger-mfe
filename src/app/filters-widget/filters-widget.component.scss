@@ -8,11 +8,11 @@
   z-index: 2;
 }
 
-dialog {
+.form-dialog {
   z-index: 3;
-  width: 90%;
-  max-width: 30rem;
-  background-color: #433352;
+  width: 100%;
+  max-width: 40rem;
+  background-color: #ffffff;
   border-radius: 6px;
   border: none;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
@@ -21,4 +21,51 @@ dialog {
   top: 25%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.basic-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 0.5rem 0;
+  border: 1px solid #dadada;
+  border-radius: 4px;
+}
+
+input:focus {
+  border-color: #28df47;
+}
+
+.cancel-submit-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.cancel-submit-container button {
+  padding: 0.5rem 1rem;
+  width: 150px;
+  border-radius: 7px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.cancel-btn {
+  background-color: #ff6868;
+}
+
+.add-btn {
+  background-color: #20a235;
+}
+
+.select-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.select-container label {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
 }
