@@ -40,7 +40,14 @@ export class LineItemsComponent {
 
   isFiltering: boolean = false;
 
+  organization: any;
+
   ngOnInit() {
+    this.dataService.getOrganization().subscribe((organization) => {
+      console.log(organization);
+      this.organization = organization;
+    });
+
     this.dataService.fetchCrebits().subscribe({
       next: (data: any) => {
         this.dataSource = data;

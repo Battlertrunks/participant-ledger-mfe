@@ -13,9 +13,33 @@
     </div>
 
     <div class="select-container">
-      <label>Title</label>
+      <label>Filter by Type</label>
       <mat-form-field>
-        <mat-label>Select Title</mat-label>
+        <mat-label>Select Type</mat-label>
+        <mat-select [(value)]="selectedFood">
+          @for (crebitType of crebitTypeChoices; track crebitType.value) {
+            <mat-option class="select-options" [value]="crebitType.value">{{crebitType.label}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="select-container">
+      <label>Form Registration</label>
+      <mat-form-field>
+        <mat-label>Select Form Registration</mat-label>
+        <mat-select [(value)]="selectedFood">
+          @for (regChoice of regFilterChoices; track regChoice) {
+            <mat-option class="select-options" [value]="regChoice.value">{{regChoice.label}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="select-container">
+      <label>Profile Registered</label>
+      <mat-form-field>
+        <mat-label>Select Registered To...</mat-label>
         <mat-select [(value)]="selectedFood">
           @for (food of foods; track food) {
             <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
@@ -24,25 +48,29 @@
       </mat-form-field>
     </div>
 
-    <p>
-      <label for="form-reg">Form Registration</label>
-      <input class="basic-input" type="select" id="form-reg" name="form-reg"/>
-    </p>
+    <div class="select-container">
+      <label>Deactivated Registrations</label>
+      <mat-form-field>
+        <mat-label>Select Deactivated Registrations</mat-label>
+        <mat-select [(value)]="selectedFood">
+          @for (food of foods; track food) {
+            <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-    <p>
-      <label for="profile-reg">Profile Registered to</label>
-      <input class="basic-input" type="select" id="profile-reg" name="profile-reg"/>
-    </p>
-
-    <p>
-      <label for="deactivated-reg">Deactivated Registration</label>
-      <input class="basic-input" type="select" id="deactivated-reg" name="deactivated-reg"/>
-    </p>
-
-    <p>
-      <label for="split-line-items">Split Line Items</label>
-      <input class="basic-input" type="select" id="split-line-items" name="split-line-items"/>
-    </p>
+    <div class="select-container">
+      <label>Split Line Items</label>
+      <mat-form-field>
+        <mat-label>Split Line Items</mat-label>
+        <mat-select [(value)]="selectedFood">
+          @for (food of foods; track food) {
+            <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     <p class="cancel-submit-container">
       <button class="cancel-btn" type="button" (click)="onClose()">Cancel</button>

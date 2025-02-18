@@ -11,8 +11,7 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
 import { EmptyRouteComponent } from './app/empty-route/empty-route.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { Subject } from 'rxjs';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 // if (environment.production) {
@@ -27,6 +26,7 @@ const lifecycles = singleSpaAngular({
       providers: [
         getSingleSpaExtraProviders(),
         { provide: APP_BASE_HREF, useValue: `${window.location.pathname}` },
+        { provide: 'singleSpaProps', useValue: singleSpaProps },
         provideHttpClient(),
         provideAnimations()
       ],

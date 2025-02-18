@@ -1,5 +1,5 @@
 import { CurrencyPipe, CommonModule } from '@angular/common';
-import { Component, NgZone } from '@angular/core';
+import { Component, Inject, Input, NgZone } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Chart } from 'chart.js/auto';
 import { FormsModule } from '@angular/forms';
@@ -26,12 +26,18 @@ interface CrebitTotals {
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  constructor(public NgZone: NgZone, private dataService: DataService) {}
+  constructor(
+    public NgZone: NgZone,
+    private dataService: DataService,
+    @Inject('singleSpaProps') private singleSpaProps: any
+  ) {}
 
   crebitTotals!: CrebitTotals | undefined;
   totalSum: number = 0;
 
   ngOnInit() {
+    this.dataService.setOrganization(this.singleSpaProps.org);
+
     this.dataService.fetchBalances().subscribe({
       next: (data: any) => {
       this.crebitTotals = data;

@@ -1,5 +1,5 @@
 @if (isFiltering) {
-  <app-filters-widget (closeFiltering)="toggleFilters()"/>
+  <app-filters-widget (closeFiltering)="toggleFilters()" [organization]="organization"/>
 }
 
 <section class="line-items-page">

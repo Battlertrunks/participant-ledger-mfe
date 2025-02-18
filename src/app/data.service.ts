@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  private organization = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) { }
+
+  setOrganization(organization: any) {
+    this.organization.next(organization);
+  }
+
+  getOrganization(): Observable<any> {
+    return this.organization.asObservable();
+  }
 
   fetchBalances(): Observable<any> {
     return this.http.get(`/api/organizations/116302/ledger-balance/participant`);
