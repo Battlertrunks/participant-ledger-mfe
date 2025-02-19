@@ -14,13 +14,12 @@ import { FiltersWidgetComponent } from '../filters-widget/filters-widget.compone
   styleUrl: './line-items.component.scss'
 })
 export class LineItemsComponent {
-
-  private searchTerm = new Subject<string>();
+  private searchTerm = new Subject<any>();
 
   constructor(private dataService: DataService) {
     this.searchTerm.pipe(
       debounceTime(500),
-      switchMap(term => {
+      switchMap((term, filters) => {
         return this.dataService.fetchCrebits(term)
       })
     ).subscribe({
@@ -61,8 +60,8 @@ export class LineItemsComponent {
     });
   }
 
-  onSearchChange(lineItemSearch: string) {
-    this.searchTerm.next(lineItemSearch);
+  onSearchChange(lineItemSearch: string, filters: string) {
+    this.searchTerm.next({ searchText: lineItemSearch, filters: filters});
   }
 
   toggleFilters() {

@@ -2,7 +2,7 @@
 </div>
 <dialog class="form-dialog" open>
   <h2>Add Task</h2>
-  <form>
+  <form (ngSubmit)="onSubmit($event)">
     <div>
       <label for="title">Date</label>
       <!-- [(ngModel)] the square and paren sets up two-way binding -->
@@ -16,7 +16,7 @@
       <label>Filter by Type</label>
       <mat-form-field>
         <mat-label>Select Type</mat-label>
-        <mat-select [(value)]="selectedFood">
+        <mat-select [(value)]="filters.crebitType">
           @for (crebitType of crebitTypeChoices; track crebitType.value) {
             <mat-option class="select-options" [value]="crebitType.value">{{crebitType.label}}</mat-option>
           }
@@ -28,7 +28,7 @@
       <label>Form Registration</label>
       <mat-form-field>
         <mat-label>Select Form Registration</mat-label>
-        <mat-select [(value)]="selectedFood">
+        <mat-select [(value)]="filters.fromRegistration">
           @for (regChoice of regFilterChoices; track regChoice) {
             <mat-option class="select-options" [value]="regChoice.value">{{regChoice.label}}</mat-option>
           }
@@ -40,9 +40,9 @@
       <label>Profile Registered</label>
       <mat-form-field>
         <mat-label>Select Registered To...</mat-label>
-        <mat-select [(value)]="selectedFood">
-          @for (food of foods; track food) {
-            <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
+        <mat-select [(value)]="filters.profileRegistration">
+          @for (regChoice of regFilterChoices; track regChoice) {
+            <mat-option class="select-options" [value]="regChoice.value">{{regChoice.label}}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -52,9 +52,9 @@
       <label>Deactivated Registrations</label>
       <mat-form-field>
         <mat-label>Select Deactivated Registrations</mat-label>
-        <mat-select [(value)]="selectedFood">
-          @for (food of foods; track food) {
-            <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
+        <mat-select [(value)]="filters.deactivatedRegistrations">
+          @for (booleanChoice of trueFalseChoices; track booleanChoice) {
+            <mat-option class="select-options" [value]="booleanChoice.value">{{booleanChoice.label}}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -64,18 +64,18 @@
       <label>Split Line Items</label>
       <mat-form-field>
         <mat-label>Split Line Items</mat-label>
-        <mat-select [(value)]="selectedFood">
-          @for (food of foods; track food) {
-            <mat-option class="select-options" [value]="food.value">{{food.viewValue}}</mat-option>
+        <mat-select [(value)]="filters.splitAttributions">
+          @for (booleanChoice of trueFalseChoices; track booleanChoice) {
+            <mat-option class="select-options" [value]="booleanChoice.value">{{booleanChoice.label}}</mat-option>
           }
         </mat-select>
       </mat-form-field>
     </div>
 
-    <p class="cancel-submit-container">
+    <div class="cancel-submit-container">
       <button class="cancel-btn" type="button" (click)="onClose()">Cancel</button>
       <button class="add-btn" type="submit">Add Filters</button>
-    </p>
+    </div>
   </form>
 </dialog>
 

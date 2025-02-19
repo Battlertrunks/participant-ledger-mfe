@@ -3,6 +3,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DataService } from '../data.service';
+import { FormsModule } from '@angular/forms';
 
 interface Filters {
   text: string | undefined;
@@ -18,20 +19,24 @@ interface Filters {
 @Component({
   selector: 'app-filters-widget',
   standalone: true,
-  imports: [MatInputModule, MatSelectModule, MatFormFieldModule],
+  imports: [MatInputModule, MatSelectModule, MatFormFieldModule, FormsModule],
   templateUrl: './filters-widget.component.html',
   styleUrl: './filters-widget.component.scss'
 })
 export class FiltersWidgetComponent {
   @Output() closeFiltering = new EventEmitter<void>();
+  @Output() applyFilters = new EventEmitter<string>();
   @Input({ required: true }) organization: any;
+myForm: any;
 
   constructor() {}
 
+  currentCrebitsPerRequest = 200;
+
   filters = {
     text: undefined,
-    startDate: '2025-02-18',
-    endDate: '2014-01-01',
+    startDate: '2014-01-01',
+    endDate: '2025-02-18',
     crebitType: undefined,
     fromRegistration: undefined,
     profileRegistration: undefined,
@@ -68,9 +73,20 @@ export class FiltersWidgetComponent {
     {value: 'tacos-2', viewValue: 'Tacos'},
   ];
 
+  trueFalseChoices = [
+    { label: 'Included', value: 'true' },
+    { label: 'Not Included', value: 'false' }
+  ];
+
   selectedFood: string = '';
 
   onClose() {
+    this.closeFiltering.emit();
+  }
+
+  onSubmit(event: Event) {
+    event.preventDefault();
+    this.applyFilters.emit(this.requestQueries());
     this.closeFiltering.emit();
   }
 
@@ -102,5 +118,18 @@ export class FiltersWidgetComponent {
         });
       }
     }
+  }
+
+  requestQueries() {
+    const queries = [];
+    /* Attach desired result crebit count */
+    queries.push('crebitCount=' + this.currentCrebitsPerRequest);
+
+    /* Apply filters */
+    Object.entries(this.filters).forEach(([key, value]) => {
+      if (value) queries.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
+    });
+
+    return queries.join('&');
   }
 }
