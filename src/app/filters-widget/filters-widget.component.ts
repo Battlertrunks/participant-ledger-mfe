@@ -80,16 +80,19 @@ myForm: any;
 
   selectedFood: string = '';
 
+  // Close the filter widget
   onClose() {
     this.closeFiltering.emit();
   }
 
+  // Submit the form
   onSubmit(event: Event) {
     event.preventDefault();
     this.applyFilters.emit(this.requestQueries());
     this.closeFiltering.emit();
   }
 
+  // Generate registration filter based on the user's request
   generateRegFilterChoices(organization: number) {
     const groups: any = [];
     addGroup(organization);
@@ -120,6 +123,7 @@ myForm: any;
     }
   }
 
+  // Requesting the crebits to be displayed
   requestQueries() {
     const queries = [];
     /* Attach desired result crebit count */

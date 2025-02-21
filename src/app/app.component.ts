@@ -38,6 +38,10 @@ export class AppComponent {
   ngOnInit() {
     this.dataService.setOrganization(this.singleSpaProps.org);
 
+    // Fetch balances data
+    // This is how we start async data fetching within Modern Angular
+    // A subscribe is similar to a Promise.then() in JavaScript, but focusing on Observables.
+    // An Observable is a representation of any set of values over any amount of time. It is basically a stream of data that can be processed with array-like operators.
     this.dataService.fetchBalances().subscribe({
       next: (data: any) => {
       this.crebitTotals = data;
@@ -61,15 +65,17 @@ export class AppComponent {
   }
 
 
-
+  // Get the percentage of the total debits sum
   get debitsPercentage() {
     return ((parseInt(this.crebitTotals?.debits!) / this.totalSum) * 100).toFixed(2);
   }
 
+  // Get the percentage of the total credits sum
   get creditsPercentage() {
     return ((parseInt(this.crebitTotals?.credits!) / this.totalSum) * 100).toFixed(2);
   }
 
+  // Get the percentage of the total balance sum
   get balancePercentage() {
     return ((parseInt(this.crebitTotals?.balance!) / this.totalSum) * 100).toFixed(2);
   }
@@ -79,7 +85,9 @@ export class AppComponent {
 
   chart: any;
 
+  // Create the chart
   createChart() {
+    // Creating an instance of the Chart class
     this.chart = new Chart('MyChart', {
       type: 'doughnut',
       data: {
@@ -107,5 +115,4 @@ export class AppComponent {
       }
     });
   }
-
 }

@@ -6,22 +6,27 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
+  // Type of Subject that remembers and shares the most recent value with new subscribers
   private organization = new BehaviorSubject<any>(null);
 
   constructor(private http: HttpClient) { }
 
+  // Method to set the organization
   setOrganization(organization: any) {
     this.organization.next(organization);
   }
 
+  // Method to get the organization
   getOrganization(): Observable<any> {
     return this.organization.asObservable();
   }
 
+  // Method to fetch balances
   fetchBalances(): Observable<any> {
     return this.http.get(`/api/organizations/116302/ledger-balance/participant`);
   }
 
+  // Method to fetch crebits
   fetchCrebits(searchFilters: any = null): Observable<any> {
     console.log(searchFilters);
     if (searchFilters) {
@@ -33,4 +38,3 @@ export class DataService {
   }
 
 }
-// /api/organizations/${organization.id}/ledger-balance/participant`

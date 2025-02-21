@@ -42,11 +42,13 @@ export class LineItemsComponent {
   organization: any;
 
   ngOnInit() {
+    // Fetch organization data
     this.dataService.getOrganization().subscribe((organization) => {
       console.log(organization);
       this.organization = organization;
     });
 
+    // Fetch crebits data
     this.dataService.fetchCrebits().subscribe({
       next: (data: any) => {
         this.dataSource = data;
@@ -60,10 +62,12 @@ export class LineItemsComponent {
     });
   }
 
+  // Searches for line items based on the search term and filters
   onSearchChange(lineItemSearch: string, filters: string) {
     this.searchTerm.next({ searchText: lineItemSearch, filters: filters});
   }
 
+  // Toggles the filters widget
   toggleFilters() {
     this.isFiltering = !this.isFiltering;
   }
