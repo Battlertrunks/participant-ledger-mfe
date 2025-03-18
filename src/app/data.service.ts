@@ -29,9 +29,9 @@ export class DataService {
   // Method to fetch crebits
   fetchCrebits(searchFilters: any = null): Observable<any> {
     console.log(searchFilters);
-    if (searchFilters) {
+    if (searchFilters && (searchFilters.searchText || searchFilters.filters)) {
       const { searchText, filters } = searchFilters;
-      return this.http.get(`/api/organizations/116302/crebitz?${searchText ? 'text=' + searchFilters + '&' : ''}${filters}`);
+      return this.http.get(`/api/organizations/116302/crebitz?${searchText ? 'text=' + searchText + '&' : ''}${filters}`);
     } else {
       return this.http.get(`/api/organizations/116302/crebitz?crebitCount=200&startDate=2014-04-01&endDate=2025-02-18&deactivatedRegistrations=true&splitAttributions=false`);
     }
